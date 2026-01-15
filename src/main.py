@@ -1,34 +1,44 @@
 import random
+import sys
 
-from full_deck import card_deck as total_deck
-from deck_operation import get_card, get_index_card, remove_card_from_deck, calcul_score
+from full_deck import card_deck as deck
+from deck_operation import handle_hand_value, handle_deal_card
+
 
 def main():
-    random.shuffle(total_deck)
-    decision = True
+    random.shuffle(deck)
 
-    player_hand = get_card(total_deck, 2)
-    computer_hand = get_card(total_deck, 2)
+    player_hand = [deck[0], deck[1]]
+    dealer_hand = [deck[0], deck[1]]
 
-    remove_card_from_deck(total_deck, player_hand)
-    remove_card_from_deck(total_deck, computer_hand)
+    player = handle_hand_value(player_hand)
+    dealer = handle_hand_value(player_hand)
 
-    while decision:
+    decision = input("Do you want to play a game of Blackjack? Type 'y' or 'n'\n--> ").lower()
 
-        decision = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ").lower()
+    while True:
+        display_hand(player_hand, dealer_hand, player, dealer, hide_dealer_hand=False)
 
-        if not decision in ['y', 'n']:
-            print("You need a pair of glasses, look at the menu again.")
-            continue
+        if player['value'] > 21:
+            print("Burst, dealer win.")
+            return
 
-        if decision == 'n':
-            decision = False
+        choice = input("Do you want to hit or stand, h/s?\n--> ")
 
-        player_score = calcul_score(player_hand)
-        computer_score = calcul_score(computer_hand)
+        if choice == 'h':
+            handle_deal_card(deck=deck, hand=player_hand)
+            player = handle_hand_value(player_hand)
+        elif choice == 's':
+            break
 
-        print(f"Your cards: {player_hand}, current score: {player_score}")
-        print(f"Computer's first card: {computer_hand[0]}")
+    while dealer['value'] < 17:
+        handle_deal_card(deck=deck, hand=dealer_hand)
+        dealer = handle_hand_value(dealer_hand)
+
+    display_hand(player_hand, dealer_hand, player, dealer, hide_dealer_hand=True)
+
+    handle_winner(player, dealer)
+    
 
 if __name__ == "__main__":
     main()
