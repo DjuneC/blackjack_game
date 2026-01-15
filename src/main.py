@@ -1,29 +1,21 @@
 import random
 import sys
+import os
+
 
 from art import logo
 from full_deck import card_deck as deck
 from deck_operation import handle_hand_value, handle_deal_card, handle_display_hand, handle_winner
 
 
-def main():
+def play():
     random.shuffle(deck)
 
     player_hand = [deck[0], deck[1]]
-    dealer_hand = [deck[0], deck[1]]
+    dealer_hand = [deck[2], deck[3]]
 
     player = handle_hand_value(player_hand)
     dealer = handle_hand_value(dealer_hand)
-
-    decision = input("Do you want to play a game of Blackjack ♠️♥️♦️♣️? Type 'y' or 'n'\n--> ").lower()
-
-    if decision == 'y':
-        print(logo)
-    elif decision == 'n':
-        sys.exit()
-    else:
-        print("Wrong input ❌")
-        main()
 
     while True:
         handle_display_hand(player_hand, dealer_hand, player, dealer, hide_dealer_hand=False)
@@ -47,6 +39,25 @@ def main():
     handle_display_hand(player_hand, dealer_hand, player, dealer, hide_dealer_hand=True)
 
     handle_winner(player, dealer)
+
+def main():
+    decision = input("Do you want to play a game of Blackjack ♠️♥️♦️♣️? Type 'y' or 'n'\n--> ").lower()
+
+    if decision == 'y':
+        print(logo)
+        play()
+    elif decision == 'n':
+        sys.exit()
+    else:
+        print("Wrong input ❌")
+        main()
+
+    print()
+    input("Press enter to continue...")
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+    main()
+
     
 
 if __name__ == "__main__":

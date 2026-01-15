@@ -28,13 +28,10 @@ def handle_deal_card(deck, hand):
     hand.append(card)
 
 def handle_display_hand(player_hand, dealer_hand, player, dealer, hide_dealer_hand):
-    if not hide_dealer_hand:
-        print(f"Your cards: {player_hand}, current score: {player['value']}")
-        print(f"Computer's first card: {dealer_hand[0]}")
 
-    else:
-        print(f"Your cards: {player_hand}, current score: {player['value']}")
-        print(f"Computer's first card: {dealer_hand}")
+    print(f"Your hand: {player_hand}, current score: {player['value']}")
+    print(f"Computer's hand: {dealer_hand[0] if not hide_dealer_hand else dealer_hand}")
+
 
 def handle_winner(player, dealer):
     if dealer['value'] > 21:
