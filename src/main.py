@@ -1,7 +1,7 @@
 import random
 import sys
 
-from logo import art
+from art import logo
 from full_deck import card_deck as deck
 from deck_operation import handle_hand_value, handle_deal_card
 
@@ -18,7 +18,7 @@ def main():
     decision = input("Do you want to play a game of Blackjack ♠️♥️♦️♣️? Type 'y' or 'n'\n--> ").lower()
 
     if decision == 'y':
-        print(art)
+        print(logo)
     elif decision == 'n':
         sys.exit()
     else:
