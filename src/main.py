@@ -18,7 +18,7 @@ def main():
     decision = input("Do you want to play a game of Blackjack ♠️♥️♦️♣️? Type 'y' or 'n'\n--> ").lower()
 
     if decision == 'y':
-        print(logo)
+        print(art)
     elif decision == 'n':
         sys.exit()
     else:
