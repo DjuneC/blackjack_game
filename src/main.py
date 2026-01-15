@@ -3,7 +3,7 @@ import sys
 
 from art import logo
 from full_deck import card_deck as deck
-from deck_operation import handle_hand_value, handle_deal_card
+from deck_operation import handle_hand_value, handle_deal_card, handle_display_hand, handle_winner
 
 
 def main():
@@ -26,10 +26,10 @@ def main():
         main()
 
     while True:
-        display_hand(player_hand, dealer_hand, player, dealer, hide_dealer_hand=False)
+        handle_display_hand(player_hand, dealer_hand, player, dealer, hide_dealer_hand=False)
 
         if player['value'] > 21:
-            print("Burst, dealer win.")
+            print("Burst, dealer win 😭")
             return
 
         choice = input("Do you want to hit or stand, h/s?\n--> ")
@@ -44,7 +44,7 @@ def main():
         handle_deal_card(deck=deck, hand=dealer_hand)
         dealer = handle_hand_value(dealer_hand)
 
-    display_hand(player_hand, dealer_hand, player, dealer, hide_dealer_hand=True)
+    handle_display_hand(player_hand, dealer_hand, player, dealer, hide_dealer_hand=True)
 
     handle_winner(player, dealer)
     

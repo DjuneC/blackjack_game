@@ -38,17 +38,17 @@ def handle_display_hand(player_hand, dealer_hand, player, dealer, hide_dealer_ha
 
 def handle_winner(player, dealer):
     if dealer['value'] > 21:
-        print("Burst, player win.")
+        print("Burst, player win 😎")
 
     elif player['blacjack'] and not dealer['blacjack']:
-        print("BLACKJACK, player win")
+        print("BLACKJACK, player win 😎")
     elif not player['blacjack'] and dealer['blacjack']:
-        print("BLACKJACK, dealer win")
+        print("BLACKJACK, dealer win 😭")
     
     elif player['value'] > dealer['value']:
-        print("Player win")
+        print("Player win 😎")
     elif player['value'] < dealer['value']:
-        print("Dealer win")
+        print("Dealer win 😭")
 
     else:
-        print("Push, it's a tie.")
+        print("Push, it's a tie ⚔️")
