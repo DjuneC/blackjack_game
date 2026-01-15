@@ -13,7 +13,7 @@ def main():
     dealer_hand = [deck[0], deck[1]]
 
     player = handle_hand_value(player_hand)
-    dealer = handle_hand_value(player_hand)
+    dealer = handle_hand_value(dealer_hand)
 
     decision = input("Do you want to play a game of Blackjack ♠️♥️♦️♣️? Type 'y' or 'n'\n--> ").lower()
 
