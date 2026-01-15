@@ -20,17 +20,22 @@ def play():
     while True:
         handle_display_hand(player_hand, dealer_hand, player, dealer, hide_dealer_hand=False)
 
-        if player['value'] > 21:
-            print("Burst, dealer win 😭")
+        if player['bust']:
+            print("Bust, dealer win 😭")
             return
+        elif player['value'] == 21:
+            break
 
         choice = input("Do you want to hit or stand, h/s?\n--> ")
 
         if choice == 'h':
             handle_deal_card(deck=deck, hand=player_hand)
             player = handle_hand_value(player_hand)
+
         elif choice == 's':
             break
+
+        print()
 
     while dealer['value'] < 17:
         handle_deal_card(deck=deck, hand=dealer_hand)
@@ -47,13 +52,13 @@ def main():
         print(logo)
         play()
     elif decision == 'n':
+        print("Bye...")
         sys.exit()
     else:
         print("Wrong input ❌")
         main()
 
-    print()
-    input("Press enter to continue...")
+    input("\nPress enter to continue...")
 
     os.system('cls' if os.name == 'nt' else 'clear')
     main()
