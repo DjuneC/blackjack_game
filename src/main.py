@@ -1,6 +1,7 @@
 import random
 import sys
 
+from logo import art
 from full_deck import card_deck as deck
 from deck_operation import handle_hand_value, handle_deal_card
 
@@ -14,7 +15,15 @@ def main():
     player = handle_hand_value(player_hand)
     dealer = handle_hand_value(player_hand)
 
-    decision = input("Do you want to play a game of Blackjack? Type 'y' or 'n'\n--> ").lower()
+    decision = input("Do you want to play a game of Blackjack ♠️♥️♦️♣️? Type 'y' or 'n'\n--> ").lower()
+
+    if decision == 'y':
+        print(logo)
+    elif decision == 'n':
+        sys.exit()
+    else:
+        print("Wrong input ❌")
+        main()
 
     while True:
         display_hand(player_hand, dealer_hand, player, dealer, hide_dealer_hand=False)
